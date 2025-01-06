@@ -1,6 +1,7 @@
 import CampaignSection from "./_components/campaign-section";
 import Categories from "./_components/categories";
 import DonationSection from "./_components/donation-section";
+import Footer from "./_components/Footer";
 import HelpTogetherSection from "./_components/help-together-section";
 import HeroSearch from "./_components/hero-search";
 import Navbar from "./_components/navbar";
@@ -18,6 +19,7 @@ export default function Home() {
       <StatsSection />
       <DonationSection />
       <HelpTogetherSection />
+      <Footer />
     </main>
   );
 }
