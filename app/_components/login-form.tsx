@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Eye, EyeOff } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function LoginForm() {
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [otp, setOtp] = useState('')
-  const [showOtp, setShowOtp] = useState(false)
-  const [otpRequested, setOtpRequested] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otp, setOtp] = useState("");
+  const [showOtp, setShowOtp] = useState(false);
+  const [otpRequested, setOtpRequested] = useState(false);
 
   const handleRequestOtp = () => {
     // Here you would typically make an API call to request OTP
-    setOtpRequested(true)
-  }
+    setOtpRequested(true);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Here you would typically make an API call to verify OTP
-    console.log('Login attempt with:', { phoneNumber, otp })
-  }
+    console.log("Login attempt with:", { phoneNumber, otp });
+  };
 
   return (
     <div className="space-y-6">
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">NGO Login</h1>
         <p className="text-sm text-gray-500">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="text-[#E84C3D] hover:underline">
             Sign Up
           </Link>
@@ -63,7 +63,7 @@ export default function LoginForm() {
           <div className="space-y-2">
             <div className="relative">
               <Input
-                type={showOtp ? 'text' : 'password'}
+                type={showOtp ? "text" : "password"}
                 placeholder="Enter OTP"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
@@ -94,7 +94,7 @@ export default function LoginForm() {
           </div>
         )}
 
-        <Button 
+        <Button
           type="submit"
           className="w-full bg-[#E84C3D] hover:bg-[#E84C3D]/90"
         >
@@ -111,35 +111,26 @@ export default function LoginForm() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-          >
+          <Button type="button" variant="outline" className="w-full">
             NGO Sign up
           </Button>
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-          >
+          <Button type="button" variant="outline" className="w-full">
             About us
           </Button>
         </div>
       </form>
 
       <p className="text-xs text-gray-500 text-center">
-        Protected by reCAPTCHA and subject to the Sevadeep{' '}
+        Protected by reCAPTCHA and subject to the Sevadeep{" "}
         <Link href="/privacy" className="text-[#E84C3D] hover:underline">
           Privacy Policy
-        </Link>
-        {' '}and{' '}
+        </Link>{" "}
+        and{" "}
         <Link href="/terms" className="text-[#E84C3D] hover:underline">
           Terms of Service
         </Link>
         .
       </p>
     </div>
-  )
+  );
 }
-

@@ -44,7 +44,7 @@ export default function HeroSearch() {
 
       <div className="relative z-20 text-center space-y-8 px-4 pt-32">
         <h1 className="text-4xl md:text-6xl font-bold text-white max-w-4xl mx-auto mt-12">
-          Let's find a crowdfunding around the world
+          Let&apos;s find a crowdfunding around the world
         </h1>
 
         <div className="relative -bottom-24 z-1 max-w-3xl mx-auto w-full">

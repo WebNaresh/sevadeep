@@ -43,7 +43,7 @@ export default function HelpTogetherSection() {
   return (
     <section className="max-w-7xl mx-auto py-24 px-4">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold mb-2">LET'S HELP TOGETHER</h2>
+        <h2 className="text-4xl font-bold mb-2">LET&apos;S HELP TOGETHER</h2>
         <p className="text-xl text-gray-600">Sevadeep In Action</p>
       </div>
 

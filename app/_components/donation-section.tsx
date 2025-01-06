@@ -75,10 +75,10 @@ export default function Home() {
         <div className="bg-white rounded-xl overflow-hidden shadow-lg p-4 md:p-6">
           <div className="flex justify-between items-start mb-6">
             <h3 className="font-medium text-lg pr-8">
-              Your donation can make a significant difference in a patient's
-              life. By contributing, you're helping to alleviate the financial
-              burden of medical expenses and giving hope to those in need of
-              critical care.
+              Your donation can make a significant difference in a
+              patient&apos;s life. By contributing, you&apos;re helping to
+              alleviate the financial burden of medical expenses and giving hope
+              to those in need of critical care.
             </h3>
             <button className="text-gray-400 hover:text-gray-600">
               <X className="h-5 w-5" />
