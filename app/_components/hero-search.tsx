@@ -43,43 +43,13 @@ export default function HeroSearch() {
       ))}
 
       <div className="relative z-20 text-center space-y-8 px-4 pt-32">
-        <h1 className="text-4xl md:text-6xl font-bold text-white max-w-4xl mx-auto mt-12">
-          Let&apos;s find a crowdfunding around the world
+        <h1 className="text-4xl capitalize md:text-6xl font-bold text-white max-w-4xl mx-auto mt-12">
+          Give your helping hand to those who need it
         </h1>
 
         <div className="relative -bottom-24 z-1 max-w-3xl mx-auto w-full">
           <div className="flex gap-4 bg-white rounded-lg p-3 shadow-xl z-50">
-            <Select>
-              <SelectTrigger className="w-[180px] border-0">
-                <SelectValue placeholder="All Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">
-                  <div className="flex items-center gap-2">
-                    <Search className="h-4 w-4" />
-                    <span>All Category</span>
-                  </div>
-                </SelectItem>
-                <SelectItem value="urgent">
-                  <div className="flex items-center gap-2">
-                    <Bell className="h-4 w-4 text-[#E84C3D]" />
-                    <span>Urgent</span>
-                  </div>
-                </SelectItem>
-                <SelectItem value="animals">
-                  <div className="flex items-center gap-2">
-                    <PawPrint className="h-4 w-4 text-[#E84C3D]" />
-                    <span>Animals</span>
-                  </div>
-                </SelectItem>
-                <SelectItem value="children">
-                  <div className="flex items-center gap-2">
-                    <Baby className="h-4 w-4 text-[#E84C3D]" />
-                    <span>Children</span>
-                  </div>
-                </SelectItem>
-              </SelectContent>
-            </Select>
+          
 
             <div className="flex-1 flex items-center">
               <input

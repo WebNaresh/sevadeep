@@ -1,15 +1,7 @@
-"use client";
+'use client'
 
-import {
-  Baby,
-  Bell,
-  Home,
-  PawPrintIcon as Paw,
-  HandIcon as PrayingHands,
-  User,
-  Utensils,
-} from "lucide-react";
-import { useState } from "react";
+import { Baby, Bell, Home, PawPrintIcon as Paw, HandIcon as PrayingHands, User, Utensils } from 'lucide-react'
+import { useState, useRef, useEffect } from "react"
 
 const categories = [
   { name: "Urgent", icon: Bell, bgColor: "bg-blue-50" },
@@ -19,45 +11,62 @@ const categories = [
   { name: "Faith", icon: PrayingHands },
   { name: "Disaster-Relief", icon: Home },
   { name: "Hunger", icon: Utensils },
-];
-
-const itemsPerPage = 7;
-const totalPages = Math.ceil(categories.length / itemsPerPage);
+]
 
 export default function Categories() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  const startIndex = currentPage * itemsPerPage;
-  const visibleCategories = categories.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  const itemsPerPage = 7
+  const totalPages = Math.ceil(categories.length / itemsPerPage)
 
   const handleDotClick = (index: number) => {
-    setCurrentPage(index);
-  };
+    setCurrentPage(index)
+    if (scrollContainerRef.current) {
+      const containerWidth = scrollContainerRef.current.offsetWidth
+      scrollContainerRef.current.scrollTo({
+        left: containerWidth * index,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const containerWidth = scrollContainerRef.current.offsetWidth
+        const scrollPosition = scrollContainerRef.current.scrollLeft
+        const newPage = Math.round(scrollPosition / containerWidth)
+        setCurrentPage(newPage)
+      }
+    }
+
+    const container = scrollContainerRef.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
 
   return (
     <div className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
       <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-gray-700 overflow-x-auto pb-4">
         <span className="whitespace-nowrap font-medium">Popular Search:</span>
-        <div className="flex flex-wrap gap-2 sm:gap-4">
-          <span className="text-gray-600 hover:text-[#E84C3D] cursor-pointer whitespace-nowrap text-sm">
-            Technology Projects
-          </span>
-          <span className="text-gray-600 hover:text-[#E84C3D] cursor-pointer whitespace-nowrap text-sm">
-            Cancer Charity Programs
-          </span>
-          <span className="text-gray-600 hover:text-[#E84C3D] cursor-pointer whitespace-nowrap text-sm">
-            Design Interior
-          </span>
-        </div>
+        
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
-        {visibleCategories.map((category) => (
+      <div 
+        ref={scrollContainerRef}
+        className="flex overflow-x-auto sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-4 sm:pb-0 scrollbar-hide"
+      >
+        {categories.map((category) => (
           <div
             key={category.name}
-            className={`flex flex-col items-center justify-center p-4 sm:p-6 rounded-lg cursor-pointer transition-all hover:shadow-lg ${
+            className={`flex-shrink-0 w-24 sm:w-auto flex flex-col items-center justify-center p-4 sm:p-6 rounded-lg cursor-pointer transition-all hover:shadow-lg ${
               category.bgColor || "bg-white"
             }`}
           >
@@ -87,5 +96,6 @@ export default function Categories() {
         ))}
       </div>
     </div>
-  );
+  )
 }
+

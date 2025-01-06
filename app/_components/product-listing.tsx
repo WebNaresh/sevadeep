@@ -71,7 +71,7 @@ export default function ProductListing() {
   return (
     <section className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
       <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4 mb-8">
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 w-full sm:w-auto">
+        {/* <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 w-full sm:w-auto">
           {categories.map((category) => (
             <Button
               key={category.id}
@@ -83,7 +83,7 @@ export default function ProductListing() {
               {category.name}
             </Button>
           ))}
-        </div>
+        </div> */}
 
         <Select defaultValue="newest">
           <SelectTrigger className="w-[140px]">
