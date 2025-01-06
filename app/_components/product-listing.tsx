@@ -1,25 +1,37 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { ChevronDown, Minus, Plus } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
+} from "@/components/ui/select"
+import { ChevronDown, Minus, Plus } from 'lucide-react'
+import Image from "next/image"
+import { useState, useEffect, useCallback } from "react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+import useEmblaCarousel from "embla-carousel-react"
 
 const categories = [
   { id: "all", name: "All Product", active: true },
-  { id: "technology", name: "Technology" },
+  { id: "electronics", name: "Electronics" },
   { id: "medical", name: "Medical" },
   { id: "clothes", name: "Clothes" },
   { id: "food", name: "Food" },
-];
+  {id:"books", name:"Books"},
+  {id:"furniture", name:"Furniture"},
+  
+]
 
 const products = [
   {
@@ -54,37 +66,42 @@ const products = [
     quantityRequired: 1000,
     totalRaised: 456,
   },
-];
+]
 
 export default function ProductListing() {
   const [quantities, setQuantities] = useState<{ [key: number]: number }>(
     Object.fromEntries(products.map((p) => [p.id, 1]))
-  );
+  )
 
   const updateQuantity = (id: number, delta: number) => {
     setQuantities((prev) => ({
       ...prev,
       [id]: Math.max(1, prev[id] + delta),
-    }));
-  };
+    }))
+  }
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (emblaApi) {
+      // Optionally, you can add event listeners or perform other actions here
+    }
+  }, [emblaApi])
 
   return (
     <section className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
       <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4 mb-8">
-        {/* <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 w-full sm:w-auto">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={category.active ? "default" : "outline"}
-              className={`${
-                category.active ? "bg-[#E84C3D] hover:bg-[#E84C3D]/90" : ""
-              } text-sm`}
-            >
-              {category.name}
-            </Button>
-          ))}
-        </div> */}
-
+        <Button className="bg-[#E84C3D]">
+          <h1 className="text-3xl font-bold">Requirements</h1>
+        </Button>
         <Select defaultValue="newest">
           <SelectTrigger className="w-[140px]">
             <SelectValue placeholder="Sort by" />
@@ -92,79 +109,101 @@ export default function ProductListing() {
           <SelectContent>
             <SelectItem value="newest">
               <div className="flex items-center gap-2">
-                Newest
+                Latest
                 <ChevronDown className="h-4 w-4" />
               </div>
             </SelectItem>
-            <SelectItem value="oldest">Oldest</SelectItem>
-            <SelectItem value="popular">Most Popular</SelectItem>
+            <SelectItem value="urgent">Urgent</SelectItem>
+            <SelectItem value="regular">Regular</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white rounded-lg overflow-hidden shadow-md"
-          >
-            <div className="relative h-48">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover"
-              />
-            </div>
+      <div className="relative">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {products.map((product) => (
+              <div key={product.id} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] pl-4">
+                <div className="bg-white rounded-lg overflow-hidden shadow-md">
+                  <div className="relative h-48">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
 
-            <div className="p-4">
-              <div className="text-[#E84C3D] text-sm mb-2">
-                {product.category}
-              </div>
-              <h3 className="font-semibold text-lg mb-4 line-clamp-2">
-                {product.title}
-              </h3>
+                  <div className="p-4">
+                    <div className="text-[#E84C3D] text-sm mb-2">
+                      {product.category}
+                    </div>
+                    <h3 className="font-semibold text-lg mb-4 line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                        className="h-full bg-green-600"
+                        style={{
+                          width: `${(product.totalRaised / product.quantityRequired) * 100}%`,
+                        }}  
+                    />
+                    </div>
 
-              <Progress
-                value={(product.totalRaised / product.quantityRequired) * 100}
-                className="h-2 mb-4"
-              />
+                    <div className="space-y-2 text-sm text-gray-600 mb-4">
+                      <div className="flex items-center justify-between">
+                        <span>Quantity required:</span>
+                        <span>{product.quantityRequired.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span>Total Raised:</span>
+                        <span>{product.totalRaised.toLocaleString()}</span>
+                      </div>
+                    </div>
 
-              <div className="space-y-2 text-sm text-gray-600 mb-4">
-                <div className="flex items-center justify-between">
-                  <span>Quantity required:</span>
-                  <span>{product.quantityRequired.toLocaleString()}</span>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => updateQuantity(product.id, -1)}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <div className="w-12 text-center">{quantities[product.id]}</div>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => updateQuantity(product.id, 1)}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    <Button className="w-full bg-[#E84C3D] hover:bg-[#E84C3D]/90 text-white">
+                      Request a pick up
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span>Total Raised:</span>
-                  <span>{product.totalRaised.toLocaleString()}</span>
-                </div>
               </div>
-
-              <div className="flex items-center justify-between gap-2 mb-4">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => updateQuantity(product.id, -1)}
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <div className="w-12 text-center">{quantities[product.id]}</div>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => updateQuantity(product.id, 1)}
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-
-              <Button className="w-full bg-[#E84C3D] hover:bg-[#E84C3D]/90 text-white">
-                Request a pick up
-              </Button>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-white"
+          onClick={scrollPrev}
+        >
+          <ChevronDown className="h-4 w-4 -rotate-90" />
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-white"
+          onClick={scrollNext}
+        >
+          <ChevronDown className="h-4 w-4 rotate-90" />
+        </Button>
       </div>
 
       <div className="text-center mt-8">
@@ -173,5 +212,6 @@ export default function ProductListing() {
         </Button>
       </div>
     </section>
-  );
+  )
 }
+

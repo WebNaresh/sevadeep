@@ -56,7 +56,7 @@ export default function Categories() {
   return (
     <div className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
       <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-gray-700 overflow-x-auto pb-4">
-        <span className="whitespace-nowrap font-medium">Popular Search:</span>
+        <span className="whitespace-nowrap font-medium">Categories:</span>
         
       </div>
       <div 
