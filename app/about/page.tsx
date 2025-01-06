@@ -24,9 +24,27 @@ export default function CSRPage() {
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        {/* About Us */}
+        {/* Hero Carousel */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <h2 className="text-white text-5xl font-bold">About us</h2>
+          <Carousel className="w-full">
+            <CarouselContent>
+              <CarouselItem>
+                <h2 className="text-white text-5xl font-bold text-center">
+                  About us
+                </h2>
+              </CarouselItem>
+              <CarouselItem>
+                <h2 className="text-white text-5xl font-bold text-center">
+                  Corporate Social Responsibility
+                </h2>
+              </CarouselItem>
+              <CarouselItem>
+                <h2 className="text-white text-5xl font-bold text-center">
+                  Making a Difference
+                </h2>
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
 
