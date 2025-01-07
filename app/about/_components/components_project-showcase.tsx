@@ -1,24 +1,28 @@
-'use client'
+"use client";
 
-import Image from "next/image"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import Image from "next/image";
 
 interface ProjectShowcaseProps {
-  title: string
-  description: string
+  title: string;
+  description: string;
   images: Array<{
-    src: string
-    alt: string
-  }>
+    src: string;
+    alt: string;
+  }>;
 }
 
-export function ProjectShowcase({ title, description, images }: ProjectShowcaseProps) {
+export function ProjectShowcase({
+  title,
+  description,
+  images,
+}: ProjectShowcaseProps) {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
       <div className="space-y-8">
@@ -59,6 +63,5 @@ export function ProjectShowcase({ title, description, images }: ProjectShowcaseP
         </div>
       </div>
     </section>
-  )
+  );
 }
-

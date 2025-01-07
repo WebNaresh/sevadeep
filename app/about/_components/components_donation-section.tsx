@@ -20,10 +20,11 @@ export function DonationSection() {
             </h3>
             <p className="text-gray-600 leading-relaxed">
               A website by Relfor foundation. This website connects Donors with
-              NGOs. The NGO's are onboarded on the platform after a detailed
-              verification process by Sevadeep team. Do you have anything in
-              good condition that you would like to donate to Needy recipient?
-              SevaDeep identifies the right recipient NGO, and connects you.
+              NGOs. The NGO&apos;s are onboarded on the platform after a
+              detailed verification process by Sevadeep team. Do you have
+              anything in good condition that you would like to donate to Needy
+              recipient? SevaDeep identifies the right recipient NGO, and
+              connects you.
             </p>
             <p className="text-gray-600 leading-relaxed">
               Donor can communicate with NGOs, complete the donation, share with
