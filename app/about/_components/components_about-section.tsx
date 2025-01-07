@@ -21,9 +21,9 @@ export function AboutSection() {
               special focus on infrastructure enhancement. From rejuvenating
               lakes by desilting them, constructing homes for tribals, and
               enhancing infrastructure of old-age homes and orphanages. The
-              cause being very close to Deepak's heart, he manages and overlooks
-              the projects undertaken under the Relfor Foundation with equal
-              passion and zeal.
+              cause being very close to Deepak&apos;s heart, he manages and
+              overlooks the projects undertaken under the Relfor Foundation with
+              equal passion and zeal.
             </p>
             <p className="text-gray-600 leading-relaxed">
               The Government of Maharashtra – Minister of State for Water

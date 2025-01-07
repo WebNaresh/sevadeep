@@ -39,7 +39,7 @@ const newsItems: NewsItem[] = [
 
 export default function NewsCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying] = useState(true);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % newsItems.length);
