@@ -68,7 +68,7 @@ export default function CSRPage() {
                 a special focus on infrastructure enhancement. From rejuvenating
                 lakes by desilting them, constructing homes for tribals, and
                 enhancing infrastructure of old-age homes and orphanages. The
-                cause being very close to Deepak's heart, he manages and
+                cause being very close to Deepak&apos;s heart, he manages and
                 overlooks the projects undertaken under the Relfor Foundation
                 with equal passion and zeal.
               </p>
@@ -101,13 +101,14 @@ export default function CSRPage() {
             </h3>
             <p className="text-gray-600 leading-relaxed">
               A website by Relfor foundation. This website connects Donors with
-              NGOs. The NGO's are onboarded on the platform after a detailed
-              verification process by Sevadeep team.Do you have anything in good
-              condition that you would like to donate to Needy recipient?
-              SevaDeep identifies the right recipient NGO, and connects you.
+              NGOs. The NGO&apos;s are onboarded on the platform after a
+              detailed verification process by Sevadeep team.Do you have
+              anything in good condition that you would like to donate to Needy
+              recipient? SevaDeep identifies the right recipient NGO, and
+              connects you.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Donor can communicate withNGOs, complete the donation, share with
+              Donor can communicate with NGOs, complete the donation, share with
               friends and invite them to join this noble cause based platform.
             </p>
           </div>

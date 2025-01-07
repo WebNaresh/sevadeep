@@ -1,37 +1,18 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { ChevronDown, Minus, Plus } from 'lucide-react'
-import Image from "next/image"
-import { useState, useEffect, useCallback } from "react"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-import useEmblaCarousel from "embla-carousel-react"
-
-const categories = [
-  { id: "all", name: "All Product", active: true },
-  { id: "electronics", name: "Electronics" },
-  { id: "medical", name: "Medical" },
-  { id: "clothes", name: "Clothes" },
-  { id: "food", name: "Food" },
-  {id:"books", name:"Books"},
-  {id:"furniture", name:"Furniture"},
-  
-]
+} from "@/components/ui/select";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronDown, Minus, Plus } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
 const products = [
   {
@@ -66,35 +47,35 @@ const products = [
     quantityRequired: 1000,
     totalRaised: 456,
   },
-]
+];
 
 export default function ProductListing() {
   const [quantities, setQuantities] = useState<{ [key: number]: number }>(
     Object.fromEntries(products.map((p) => [p.id, 1]))
-  )
+  );
 
   const updateQuantity = (id: number, delta: number) => {
     setQuantities((prev) => ({
       ...prev,
       [id]: Math.max(1, prev[id] + delta),
-    }))
-  }
+    }));
+  };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev()
-  }, [emblaApi])
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext()
-  }, [emblaApi])
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   useEffect(() => {
     if (emblaApi) {
       // Optionally, you can add event listeners or perform other actions here
     }
-  }, [emblaApi])
+  }, [emblaApi]);
 
   return (
     <section className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
@@ -123,7 +104,10 @@ export default function ProductListing() {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {products.map((product) => (
-              <div key={product.id} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] pl-4">
+              <div
+                key={product.id}
+                className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] pl-4"
+              >
                 <div className="bg-white rounded-lg overflow-hidden shadow-md">
                   <div className="relative h-48">
                     <Image
@@ -142,12 +126,15 @@ export default function ProductListing() {
                       {product.title}
                     </h3>
                     <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                  <div
+                      <div
                         className="h-full bg-green-600"
                         style={{
-                          width: `${(product.totalRaised / product.quantityRequired) * 100}%`,
-                        }}  
-                    />
+                          width: `${
+                            (product.totalRaised / product.quantityRequired) *
+                            100
+                          }%`,
+                        }}
+                      />
                     </div>
 
                     <div className="space-y-2 text-sm text-gray-600 mb-4">
@@ -169,7 +156,9 @@ export default function ProductListing() {
                       >
                         <Minus className="h-4 w-4" />
                       </Button>
-                      <div className="w-12 text-center">{quantities[product.id]}</div>
+                      <div className="w-12 text-center">
+                        {quantities[product.id]}
+                      </div>
                       <Button
                         variant="outline"
                         size="icon"
@@ -212,6 +201,5 @@ export default function ProductListing() {
         </Button>
       </div>
     </section>
-  )
+  );
 }
-
