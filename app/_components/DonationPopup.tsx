@@ -23,12 +23,12 @@ interface DonationPopupProps {
 }
 
 export function DonationPopup({ isOpen, onClose }: DonationPopupProps) {
-  const [formData, setFormData] = useState<DonationData>({
-    name: "",
-    phone: "",
-    address: "",
-    additionalInfo: "",
-  });
+  // const [formData, setFormData] = useState<DonationData>({
+  //   name: "",
+  //   phone: "",
+  //   address: "",
+  //   additionalInfo: "",
+  // });
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
