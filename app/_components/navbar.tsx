@@ -41,9 +41,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Button className="bg-[#E84C3D] hover:bg-[#E84C3D]/90 text-white">
-            Sponsor a Meal
-          </Button>
+          <Button>Sponsor a Meal</Button>
         </div>
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>

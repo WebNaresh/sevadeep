@@ -168,9 +168,7 @@ export default function ProductListing() {
                       </Button>
                     </div>
 
-                    <Button className="w-full bg-[#E84C3D] hover:bg-[#E84C3D]/90 text-white">
-                      Request a pick up
-                    </Button>
+                    <Button>Request a pick up</Button>
                   </div>
                 </div>
               </div>
