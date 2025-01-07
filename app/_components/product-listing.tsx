@@ -209,10 +209,8 @@ export default function ProductListing() {
       <DonationPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
-        onSubmit={() => {
-          /* handle submit logic here */
-        }}
-        productTitle={"donation"}
+    
+
       />
     </section>
   );
