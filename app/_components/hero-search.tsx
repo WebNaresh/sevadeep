@@ -37,7 +37,7 @@ export default function HeroSearch() {
 
   return (
     <div className="relative min-h-[28rem] flex flex-col justify-between overflow-visible">
-      <div className="absolute" />
+      <div className="absolute inset-0 bg-black opacity-50 z-10" />
       {backgroundImages.map((image, index) => (
         <div
           key={image}

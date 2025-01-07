@@ -122,9 +122,7 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-4 pt-0 flex gap-2 justify-between items-center">
-                  <Button className="flex-grow bg-[#E84C3D] hover:bg-[#E84C3D]/90">
-                    Donate Now
-                  </Button>
+                  <Button>Donate Now</Button>
                   <Button className=" bg-green-500 text-white">
                     <FaWhatsapp size={24} />
                   </Button>

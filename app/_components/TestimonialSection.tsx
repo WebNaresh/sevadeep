@@ -1,7 +1,9 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const testimonials = [
@@ -174,12 +176,9 @@ export default function TestimonialsSection() {
             lasting change.
           </p>
           <div className="mt-8">
-            <a
-              href="#donate"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 transition-colors"
-            >
-              Start Donating Today
-            </a>
+            <Link href="#donate">
+              <Button>Start Donating Today</Button>
+            </Link>
           </div>
         </div>
       </div>
