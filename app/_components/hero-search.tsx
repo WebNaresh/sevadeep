@@ -5,11 +5,9 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const backgroundImages = [
-  "/images/hero1.jpg",
-  "/images/hero2.jpg",
-  "/images/hero3.jpg",
-  "/images/desktop1.webp",
-  "/images/desktop2.webp",
+  "/images/desktop1.png",
+  "/images/desktop2.png",
+  "/images/desktop3.png",
 ];
 const placeholders = [
   "Search by City...",
