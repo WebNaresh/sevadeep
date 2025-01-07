@@ -8,14 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 
-interface DonationData {
-  name: string;
-  phone: string;
-  address: string;
-  additionalInfo: string;
-}
+
+// interface DonationData {
+//   name: string;
+//   phone: string;
+//   address: string;
+//   additionalInfo: string;
+// }
 
 interface DonationPopupProps {
   isOpen: boolean;
