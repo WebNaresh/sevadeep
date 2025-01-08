@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import DonationForm from "./donation_form";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,10 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Button>Sponsor a Meal</Button>
+          <DonationForm
+            initialAmount={0}
+            buttonComp={<Button>Sponsor a Meal</Button>}
+          />
         </div>
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>

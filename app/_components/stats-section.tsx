@@ -1,25 +1,49 @@
 "use client";
 
+import { BadgeIndianRupee, Home, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const stats = [
-  { number: 12081, label: "Total Donations" },
-  { number: 1824, label: "Current Needs" },
-  { number: 1214, label: "Total NGO's" },
-  { number: 100, label: "Total Cities" },
+  {
+    number: 300,
+    label: "Worth Donations",
+    prefix: "₹",
+    suffix: "+ Cr",
+    icon: BadgeIndianRupee,
+  },
+  {
+    number: 15,
+    label: "Donor Transactions",
+    suffix: " Lakhs",
+    icon: Users,
+  },
+  {
+    number: 1400,
+    label: "NGOs Impacted",
+    suffix: "+",
+    icon: Home,
+  },
 ];
 
-function AnimatedNumber({ value }: { value: number }) {
+function AnimatedNumber({
+  value,
+  prefix = "",
+  suffix = "",
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+}) {
   const [displayValue, setDisplayValue] = useState(0);
   const { ref, inView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
   });
 
-  const animationRef = useRef<NodeJS.Timeout>(null);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number | undefined>(undefined);
-  const duration = 2000; // Animation duration in milliseconds
+  const duration = 2000;
 
   useEffect(() => {
     if (inView) {
@@ -30,7 +54,6 @@ function AnimatedNumber({ value }: { value: number }) {
         const elapsed = now - (startTimeRef.current || 0);
         const progress = Math.min(elapsed / duration, 1);
 
-        // Easing function for smooth animation
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const currentValue = Math.floor(easeOutQuart * value);
 
@@ -54,43 +77,40 @@ function AnimatedNumber({ value }: { value: number }) {
   }, [inView, value]);
 
   return (
-    <div ref={ref} className="text-5xl md:text-6xl font-bold text-[#E84C3D]">
-      {displayValue}+
+    <div ref={ref} className="text-3xl font-bold text-[#E84C3D]">
+      {prefix}
+      {displayValue}
+      {suffix}
     </div>
   );
 }
 
 export default function StatsSection() {
   return (
-    <section className="relative py-24">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url('/placeholder.svg?height=600&width=1920')`,
-        }}
-      />
-      <div className="absolute inset-0 bg-black/60" />
-
-      <div className="relative max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-2 text-white">
-            Numbers Speak !
-          </h2>
-          <p className="text-xl text-gray-300">
-            Some facts about evadeep initiative!
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <AnimatedNumber value={stat.number} />
-              <div className="mt-2 text-gray-500 text-lg">{stat.label}</div>
-            </div>
-          ))}
+    <section className="py-12 bg-gradient-to-b from-red-50/50">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-lg transition-shadow"
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-red-50 rounded-full">
+                    <Icon className="w-6 h-6 text-[#E84C3D]" />
+                  </div>
+                </div>
+                <AnimatedNumber
+                  value={stat.number}
+                  prefix={stat.prefix}
+                  suffix={stat.suffix}
+                />
+                <div className="mt-2 text-gray-600 text-sm">{stat.label}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

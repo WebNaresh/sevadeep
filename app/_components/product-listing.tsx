@@ -78,7 +78,7 @@ export default function ProductListing() {
   }, [emblaApi]);
 
   return (
-    <section className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
+    <section className="max-w-7xl mx-auto py-8 sm:py-12 px-4 pt-12">
       <div className="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4 mb-8">
         <Button className="bg-[#E84C3D]">
           <h1 className="text-3xl font-bold">Requirements</h1>

@@ -1,7 +1,15 @@
-'use client'
+"use client";
 
-import { Baby, Bell, Home, PawPrintIcon as Paw, HandIcon as PrayingHands, User, Utensils } from 'lucide-react'
-import { useState, useRef, useEffect } from "react"
+import {
+  Baby,
+  Bell,
+  Home,
+  PawPrintIcon as Paw,
+  HandIcon as PrayingHands,
+  User,
+  Utensils,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const categories = [
   { name: "Urgent", icon: Bell, bgColor: "bg-blue-50" },
@@ -11,58 +19,54 @@ const categories = [
   { name: "Faith", icon: PrayingHands },
   { name: "Disaster-Relief", icon: Home },
   { name: "Hunger", icon: Utensils },
-]
+];
 
 export default function Categories() {
-  const [currentPage, setCurrentPage] = useState(0)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [currentPage, setCurrentPage] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const itemsPerPage = 7
-  const totalPages = Math.ceil(categories.length / itemsPerPage)
+  const itemsPerPage = 7;
+  const totalPages = Math.ceil(categories.length / itemsPerPage);
 
   const handleDotClick = (index: number) => {
-    setCurrentPage(index)
+    setCurrentPage(index);
     if (scrollContainerRef.current) {
-      const containerWidth = scrollContainerRef.current.offsetWidth
+      const containerWidth = scrollContainerRef.current.offsetWidth;
       scrollContainerRef.current.scrollTo({
         left: containerWidth * index,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     }
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
-        const containerWidth = scrollContainerRef.current.offsetWidth
-        const scrollPosition = scrollContainerRef.current.scrollLeft
-        const newPage = Math.round(scrollPosition / containerWidth)
-        setCurrentPage(newPage)
+        const containerWidth = scrollContainerRef.current.offsetWidth;
+        const scrollPosition = scrollContainerRef.current.scrollLeft;
+        const newPage = Math.round(scrollPosition / containerWidth);
+        setCurrentPage(newPage);
       }
-    }
+    };
 
-    const container = scrollContainerRef.current
+    const container = scrollContainerRef.current;
     if (container) {
-      container.addEventListener('scroll', handleScroll)
+      container.addEventListener("scroll", handleScroll);
     }
 
     return () => {
       if (container) {
-        container.removeEventListener('scroll', handleScroll)
+        container.removeEventListener("scroll", handleScroll);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto py-8 sm:py-12 px-4">
       <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-gray-700 overflow-x-auto pb-4">
         <span className="whitespace-nowrap font-medium">Categories:</span>
-        
       </div>
-      <div 
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 pb-4 sm:pb-0 scrollbar-hide"
-      >
+      <div ref={scrollContainerRef} className="flex flex-wrap justify-center">
         {categories.map((category) => (
           <div
             key={category.name}
@@ -81,21 +85,6 @@ export default function Categories() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center gap-1 sm:gap-2 mt-6 sm:mt-8">
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`transition-all duration-300 rounded-full ${
-              currentPage === index
-                ? "w-6 sm:w-8 h-2 bg-[#E84C3D]"
-                : "w-2 h-2 bg-gray-200 hover:bg-gray-300"
-            }`}
-            aria-label={`Go to page ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
-  )
+  );
 }
-

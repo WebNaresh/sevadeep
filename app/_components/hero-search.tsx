@@ -37,7 +37,7 @@ export default function HeroSearch() {
 
   return (
     <div className="relative min-h-[28rem] flex flex-col justify-between overflow-visible">
-      <div className="absolute inset-0 bg-black opacity-50 z-10" />
+      <div className="absolute inset-0 z-10" />
       {backgroundImages.map((image, index) => (
         <div
           key={image}
@@ -51,7 +51,13 @@ export default function HeroSearch() {
 
       <div className="relative z-20 text-center space-y-8 px-4 pt-32">
         <div className="text-4xl capitalize md:text-6xl font-bold text-white max-w-4xl mx-auto mt-12">
-          <h1 className=""> Give your helping hand to those who need it</h1>
+          <h1 className="">
+            d &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+            &nbsp; &nbsp; &nbsp;{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+            &nbsp;{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+          </h1>
         </div>
 
         <div className="relative -bottom-24 z-1 max-w-3xl mx-auto w-full">
