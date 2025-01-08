@@ -13,6 +13,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronDown, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import { DonationPopup } from "./DonationPopup";
 
 const products = [
   {
@@ -53,6 +54,7 @@ export default function ProductListing() {
   const [quantities, setQuantities] = useState<{ [key: number]: number }>(
     Object.fromEntries(products.map((p) => [p.id, 1]))
   );
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const updateQuantity = (id: number, delta: number) => {
     setQuantities((prev) => ({
@@ -168,7 +170,12 @@ export default function ProductListing() {
                       </Button>
                     </div>
 
-                    <Button>Request a pick up</Button>
+                    <Button
+                      className="w-full bg-[#E84C3D] hover:bg-[#E84C3D]/90 text-white"
+                      onClick={() => setIsPopupOpen(true)}
+                    >
+                      Request a pick up
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -198,6 +205,13 @@ export default function ProductListing() {
           See More
         </Button>
       </div>
+
+      <DonationPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+    
+
+      />
     </section>
   );
 }
